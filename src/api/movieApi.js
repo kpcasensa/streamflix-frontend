@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://127.0.0.1:8000/api/movies";
+const API_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const getMovies = () => axios.get(`${API_URL}/`);
 export const getMovie = (id) => axios.get(`${API_URL}/${id}/`);
