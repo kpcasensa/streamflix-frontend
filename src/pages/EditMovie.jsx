@@ -44,7 +44,7 @@ const EditMovie = () => {
     }
 
     await updateMovie(id, data);
-    navigate('/');
+    navigate(`/details/${id}`);
   };
 
   return (
