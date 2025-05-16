@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getMovie } from '../api/movieApi';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { getMovie, deleteMovie } from '../api/movieApi';
 
 const ViewMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to delete this movie?')) {
+            await deleteMovie(id);
+            navigate('/');
+        }
+    };
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -27,6 +35,9 @@ const ViewMovie = () => {
           </video>
         </div>
       )}
+      <button onClick={handleDelete} style={{ color: 'red' }}>
+        Delete Movie
+      </button>
       <Link to="/">Back to Movies</Link>
     </div>
   );
